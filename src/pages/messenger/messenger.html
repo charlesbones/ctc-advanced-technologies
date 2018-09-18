@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>BLE Messenger</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="ionViewWillLeave()">
+        Disconnect
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="padding">
+  <h1 id="dataDisplay">{{savedValue?savedValue:"Nothing yet..."}}</h1>
+  <div id="statusDiv">{{peripheral.name?peripheral.name:"not connected"}}</div>
+  <ion-list>
+    <label class="item item-input">
+        <ion-input type="text" [(ngModel)]="inputValue"></ion-input>
+    </label>
+  </ion-list>
+  <button class="base primary button-block" (click)="writeMsg($event)" >send </button>
+  <button class="base primary button-block" (click)="readVal($event)" >read </button>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>

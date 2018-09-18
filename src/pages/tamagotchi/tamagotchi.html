@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>tamagochi</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="padding">
+  <ion-list>
+    <ion-list-header>
+      Exercise
+      <ion-badge item-end>{{exercise}}</ion-badge>
+    </ion-list-header>
+  <ion-item>
+    <ion-range min="0" max="100" [(ngModel)]="exercise" color="secondary">
+      <ion-label range-left>-0</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-list-header>
+    Food
+    <ion-badge item-end >{{food}}</ion-badge>
+  </ion-list-header>
+  <ion-item>
+    <ion-range min="0" max="100" [(ngModel)]="food" color="secondary">
+      <ion-label range-left>-0</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+  <ion-list-header>
+    Sleep
+    <ion-badge item-end>{{sleep}}</ion-badge>
+  </ion-list-header>
+  <ion-item>
+    <ion-range min="0" max="100" [(ngModel)]="sleep" color="secondary">
+      <ion-label range-left>-0</ion-label>
+      <ion-label range-right>100</ion-label>
+    </ion-range>
+  </ion-item>
+
+</ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
