@@ -13,16 +13,6 @@
 <ion-content>
   <div class="welcomeImg"><ion-icon name="planet"></ion-icon></div>
 		<div class="welcomeText wt1">Welcome to our space voyage! Select you BLE device</div>
-		<!--<div class="welcomeText wt2">
-			There are a few exercises you can do with this app
-		</div>
-		<ul class="welcomeText wt3">
-			<li>BLE Messenger</li>
-			<li>Value Display</li>
-			<li>Custom Control</li>
-			<li>ZaZZ the Alien</li>
-			<li>Space Rover</li>
-		</ul>-->
     <ion-list>
     <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">
       <h2>{{ device.name || 'Unnamed' }}</h2>

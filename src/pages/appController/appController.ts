@@ -38,13 +38,8 @@ export class appControllerPage {
   onConnected(peripheral,device) {
     this.peripheral = peripheral;
     this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
-    // Subscribe for notifications when the temperature changes
-      /*this.ble.startNotification(this.peripheral.id, SERVICE, TYPE_CHARACTERISTIC).subscribe(
-        data => this.onButtonStateChange(data),
-        () => this.showAlert('Unexpected Error', 'Failed to subscribe for type changes')
-      )*/
 
-      // Read the current value of the temperature characteristic
+      // Read the current value of the type characteristic to choose view
       this.ble.read(this.peripheral.id, SERVICE, TYPE_CHARACTERISTIC).then(
         data => this.onButtonStateChange(data,device,peripheral),
         () => this.showAlert('Unexpected Error', 'Failed to get type')
@@ -66,15 +61,6 @@ export class appControllerPage {
       });
     }
   }
-
-  // Disconnect peripheral when leaving the page
-/*  ionViewWillLeave() {
-    console.log('ionViewWillLeave disconnecting Bluetooth');
-    this.ble.disconnect(this.peripheral.id).then(
-      () => console.log('Disconnected ' + JSON.stringify(this.peripheral)),
-      () => console.log('ERROR disconnecting ' + JSON.stringify(this.peripheral))
-    )
-  }*/
 
   showAlert(title, message) {
     let alert = this.alertCtrl.create({

@@ -23,24 +23,13 @@ export class messengerPage {
               private alertCtrl: AlertController,
               private ngZone: NgZone) {
 
-    //let device = navParams.get('device');
     let peripheral= navParams.get('peripheral');
     this.setStatus('Connected to ' + (peripheral.name || peripheral.id));
     this.ngZone.run(() => {
       this.peripheral = peripheral;
     });
-    /*this.ble.startNotification(peripheral.id, SERVICE, TX_CHARACTERISTIC).subscribe(
-      peripheral => this.onConnected(peripheral),
-      () => this.showAlert('Unexpected Error', 'Failed to subscribe for messenger')
-    )*/
-    //this.setStatus('Connecting to ' + device.name || device.id);
-    /*this.ble.connect(device.id).subscribe(
-      peripheral => this.onConnected(peripheral),
-      peripheral => this.showAlert('Disconnected', 'The peripheral unexpectedly disconnected')
-    );*/
-
   }
-
+  //Fucntions to parse from buffer to string and viseversa
   str2ab(str) {
       var buf = new ArrayBuffer(str.length*2);
       var bufView = new Uint8Array(buf);
@@ -53,14 +42,9 @@ export class messengerPage {
         return String.fromCharCode.apply(null, new Uint8Array(buff));
   }
   // the connection to the peripheral was successful
+  //Probably take it away
   onConnected(peripheral) {
 
-
-    //this.setStatus('Connected to ' + (peripheral.name || peripheral.id) + " "+peripheral.characteristics[3].service);
-    /*this.ble.startNotification(this.peripheral.id, SERVICE, TX_CHARACTERISTIC).subscribe(
-      data => this.onButtonStateChange(data),
-      () => this.showAlert('Unexpected Error', 'Failed to subscribe for messenger')
-    )*/
   }
   readVal(event){
     this.ble.read(this.peripheral.id, SERVICE, TX_CHARACTERISTIC).then(
@@ -78,14 +62,8 @@ export class messengerPage {
     this.inputValue="";
   }
  onButtonStateChange(buffer:ArrayBuffer) {
-    //var data = new Uint8Array(buffer);
     console.log(this.ab2str(buffer));
-
     this.savedValue=this.ab2str(buffer);
-    //this.ngZone.run(() => {
-      //this.buttonState = data[0];
-    //});
-
   }
 
   // Disconnect peripheral when leaving the page
@@ -96,7 +74,6 @@ export class messengerPage {
       () => console.log('ERROR disconnecting ' + JSON.stringify(this.peripheral))
     )
     this.navCtrl.push(HomePage, {
-
     });
   }
 
